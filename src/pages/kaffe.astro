@@ -1,0 +1,68 @@
+---
+import ContentLayout from "../layouts/ContentLayout.astro";
+import ProductLayout from "../layouts/ProductLayout.astro";
+import BackBtn from "../components/BackBtn.astro";
+import Carousel from "../components/Carousel.astro";
+import { Image } from "astro:assets";
+import img1 from "../gallery/brygg-mellan.png";
+import img2 from "../gallery/mellan.png";
+import img3 from "../gallery/Logga-Trans.png";
+import img4 from "../gallery/demeter.png";
+import img5 from "../gallery/img39.avif";
+---
+
+<main>
+  <ContentLayout
+    heading="kaffe."
+    title="kaffe."
+    color="var(--color-6)"
+    bg="var(--color-3)"
+    transitionName="image-0"
+  >
+    <Carousel />
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque,
+      ullam.
+    </p>
+  </ContentLayout>
+  <ProductLayout
+    img1="/images/brygg.png"
+    img2="/images/brygglabels.avif"
+    img3="/images/brygg-info.avif"
+    img4="/images/Logga-Trans.png"
+    title="Poab's Brygg."
+  >
+    På våran resa genom södra Indien hittade vi den biodynamiska gården Poabs.
+    Gården ligger högt i bergen och drivs som ett slutet kretslopp där allt tas
+    tillvara på. Smaken är fyllig och väl balanserad med härligt söta toner.
+    Omsorgsfullt rostat!
+  </ProductLayout>
+</main>
+
+<style>
+  main {
+    /* background-color: var(--color-6); */
+  }
+
+  p {
+    /* text-align: center; */
+    grid-column: 2 / -1;
+    place-self: center;
+    padding-inline: 2rem;
+    font-size: var(--size-fluid-4);
+    line-height: 1;
+    /* font-size: 3rem; */
+    font-family: "JakobHand";
+    /* background-color: black; */
+    /* color: lime; */
+    /* text-wrap: balance;
+    word-wrap: break-word;
+    hyphens: auto; */
+    @media (min-width: 500px) {
+      grid-column: 1 / -1;
+    }
+    @media (min-width: 1168px) {
+      grid-column: 3 / -1;
+    }
+  }
+</style>

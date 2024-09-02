@@ -1,0 +1,187 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Image from "astro/components/Image.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout title="JR">
+  <nav>
+    <ul class="hero-links">
+      <h1 class="div1">JÄRNA</h1>
+      <Card
+        color="#FF00ff"
+        bg="var(--color-2)"
+        body="HELLO"
+        id="image-0"
+        hoverBg="var(--color-1)"
+        className="image-0 div2"
+      />
+      <h1 class="div3">ROSTERI</h1>
+      <!-- <img src="/images/espgrande.png" class="div4" alt="" /> -->
+      <Card
+        color="#FF0"
+        bg="var(--color-2)"
+        body="HELLO"
+        id="image-1"
+        hoverBg="var(--color-1)"
+        className="image-7 div4"
+      />
+      <Card
+        color="#FF0"
+        bg="var(--color-2)"
+        body="HELLO"
+        id="image-1"
+        hoverBg="var(--color-1)"
+        className="image-1 div5"
+      />
+      <Card
+        color="pink"
+        bg="green"
+        body="HELLO"
+        id="image-2"
+        hoverBg="var(--color-1)"
+        className="image-2 div6"
+      />
+      <Card
+        color="pink"
+        bg="black"
+        body="HELLO"
+        id="image-3"
+        hoverBg="var(--color-1)"
+        className="image-3 div7"
+      />
+      <Card
+        color="pink"
+        bg="black"
+        body="HELLO"
+        id="image-4"
+        hoverBg="var(--color-1)"
+        className="image-4 div8"
+      />
+      <Card
+        color="pink"
+        bg="black"
+        body="HELLO"
+        id="image-5"
+        hoverBg="var(--color-1)"
+        className="image-5 div9"
+      />
+    </ul>
+  </nav>
+</Layout>
+<style is:global>
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+  }
+
+  .hero-links {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+  .div1 {
+    grid-column: span 2 / span 2;
+  }
+  .div2:hover h1 {
+    display: none;
+  }
+
+  .div2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 2;
+  }
+
+  .div3 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 4;
+    grid-row-start: 3;
+  }
+
+  .div4 {
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 3;
+  }
+
+  .div5 {
+    grid-column: span 3 / span 3;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 1;
+  }
+
+  .div6 {
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    grid-row-start: 4;
+  }
+
+  .div7 {
+    grid-column: span 3 / span 3;
+    grid-row: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 5;
+  }
+
+  .div8 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 5;
+    grid-row-start: 4;
+  }
+
+  .div9 {
+    grid-row: span 3 / span 3;
+    grid-column-start: 6;
+    grid-row-start: 1;
+  }
+
+  @media (min-width: 800px) {
+    .hero-links {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const response = await fetch("../data/images.json");
+    let images = await response.json();
+    shuffle(images);
+
+    images.slice(0, 6).forEach((src, i) => {
+      const img = document.getElementById(`image-${i}`) as HTMLImageElement;
+      img.src = src;
+    });
+
+    const articles = document.querySelectorAll(".hero-links li");
+    let imageIndex = 6;
+
+    articles.forEach((article) => {
+      article.addEventListener("mouseenter", () => {
+        const img = article.querySelector("img");
+        if (imageIndex >= images.length) {
+          shuffle(images);
+          imageIndex = 0;
+        }
+        img.src = images[imageIndex++];
+      });
+    });
+  });
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+</script>

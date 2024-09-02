@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<!-- Transform: matrix(1,0,0,1,0,0) -->
+<Layout title="gr">
+  <section>
+    <div>
+      <h2>he</h2>
+      <img src="/images/gallery/img3.jpg" alt="" />
+    </div>
+    <div>
+      <img src="/images/gallery/img12.jpg" alt="" />
+    </div>
+    <div>
+      <img src="/images/gallery/img16.jpg" alt="" />
+    </div>
+    <div>
+      <h2>
+        <a href="./kontakt">KONTAKT</a>
+      </h2>
+      <img src="/images/gallery/img2.jpg" alt="" />
+    </div>
+    <div>
+      <img src="/images/gallery/img22.jpg" alt="" />
+    </div>
+    <div>
+      <img src="/images/gallery/img4.jpg" alt="" />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  article {
+    background-color: black;
+    border: 12px solid red;
+  }
+  section {
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    min-height: 90vh;
+    max-width: 1900px;
+    margin-inline: auto;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(clamp(200px, 30%, 500px), 1fr)
+    );
+    /* gap: var(--size-fluid-1); */
+  }
+  section img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* object-position: right; */
+    transition: opacity 0.125s ease-in-out;
+    transition: transform 0.125s ease-in-out;
+    filter: contrast(100%);
+    /* filter: grayscale(100%); */
+    filter: saturate(1.4);
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: green;
+    width: 100%;
+    min-height: 33vh;
+    /* aspect-ratio: 1; */
+    /* height: 100%; */
+    overflow: hidden;
+    /* border: 20px solid currentColor; */
+  }
+  div h2 {
+    font-size: 3rem;
+    transform: rotate(90deg);
+  }
+
+  section div:hover img {
+    /* opacity: 0; */
+    /* display: none; */
+    transform: translateY(-100%);
+    /* -webkit-mask: var(--mask-edge-drip-left); */
+  }
+  div:hover {
+    /* opacity: 0.2; */
+    /* background-blend-mode: color-burn; */
+  }
+  div:nth-child(1) {
+    background-color: #ff8901;
+    color: rgb(93, 1, 179);
+    grid-column: span 2;
+    &:hover {
+      -webkit-mask: var(--mask-edge-drip-right);
+    }
+  }
+  div:nth-child(2) {
+    background-color: #fffe00;
+    &:hover {
+      -webkit-mask: var(--mask-edge-zig-zag-bottom);
+    }
+  }
+  div:nth-child(3) {
+    background-color: #7100ff;
+    color: rgb(238, 0, 255);
+    grid-row: span 2;
+  }
+  div:nth-child(4) {
+    background-color: #00ffa3;
+    color: green;
+  }
+  div:nth-child(5) {
+    background-color: #ff0000;
+    color: yellow;
+  }
+  div:nth-child(6) {
+    /* stack grain with a gradient */
+    background-image: var(--gradient-3);
+    /* force colors and noise to collide */
+    /* filter: var(--noise-filter-1); */
+    /* fit noise image to element */
+    /* background-size: cover; */
+    color: orange;
+    grid-column: span 2;
+  }
+</style>

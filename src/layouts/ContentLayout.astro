@@ -1,0 +1,71 @@
+---
+import Layout from "./Layout.astro";
+import BackBtn from "../components/BackBtn.astro";
+import { fade } from "astro:transitions";
+import { slide } from "astro:transitions";
+
+interface Props {
+  title: string;
+  heading: string;
+  bg: string;
+  color: string;
+  transitionName: string;
+}
+
+const { title, heading, transitionName, bg, color } = Astro.props;
+---
+
+<Layout title={title}>
+  <div class="clip-bg" style={{ backgroundColor: color }}>
+    <section class="grid" style={{ backgroundColor: bg, color: color }}>
+      <div class="heading-container">
+        <h1 transition:name={`card-title-${transitionName}`}>{heading}</h1>
+      </div>
+      <slot />
+    </section>
+  </div>
+  <BackBtn />
+</Layout>
+
+<style>
+  .clip-bg {
+    background-color: var(--color-3);
+  }
+  section {
+    background-color: var(--color-1);
+    color: var(--color-3);
+    width: min(100%, 1500px);
+    margin-inline: auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: 100vh;
+    gap: 1rem;
+    -webkit-mask: var(--mask-edge-drip-bottom);
+    @media (min-width: 500px) {
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+  }
+
+  .heading-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(270deg);
+    white-space: nowrap;
+    font-size: min(10rem, 1rem + 20vw);
+    z-index: 12;
+    /* text-decoration: overline; */
+  }
+
+  a:hover {
+    color: white;
+  }
+</style>
