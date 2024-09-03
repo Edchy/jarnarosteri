@@ -1,24 +1,42 @@
 <!-- add Astro.Image -->
-<div>
-  <div class="scroller" data-direction="left" data-speed="fast">
-    <div class="scroller__inner">
-      <img src="/images/brygg.png" alt="bag of coffebeans" />
-      <img src="/images/espgrande.png" alt="bag of coffebeans" />
-      <img src="/images/esp.png" alt="bag of coffebeans" />
-      <img src="/images/mellan.png" alt="bag of coffebeans" />
-    </div>
+<div class="scroller" data-direction="left" data-speed="fast">
+  <div class="scroller__inner">
+    <img src="/images/coffee/brygg.avif" alt="bag of coffebeans" />
+    <img src="/images/coffee/espgrande.avif" alt="bag of coffebeans" />
+    <img src="/images/coffee/esp.avif" alt="bag of coffebeans" />
+    <img src="/images/coffee/mellan.avif" alt="bag of coffebeans" />
+    <!-- <img aria-hidden="true" src="/images/brygg.png" alt="bag of coffebeans" />
+    <img
+      aria-hidden="true"
+      src="/images/espgrande.png"
+      alt="bag of coffebeans"
+    />
+    <img aria-hidden="true" src="/images/esp.png" alt="bag of coffebeans" />
+    <img aria-hidden="true" src="/images/mellan.png" alt="bag of coffebeans" />
+    <img aria-hidden="true" src="/images/brygg.png" alt="bag of coffebeans" />
+    <img
+      aria-hidden="true"
+      src="/images/espgrande.png"
+      alt="bag of coffebeans"
+    />
+    <img aria-hidden="true" src="/images/esp.png" alt="bag of coffebeans" />
+    <img aria-hidden="true" src="/images/mellan.png" alt="bag of coffebeans" /> -->
   </div>
 </div>
+
 <style>
+  a {
+    max-width: 100%;
+  }
   .scroller {
     max-width: 100%;
-    border-left: 1px solid var(--color-6);
+    /* border-left: 1px solid var(--color-6); */
   }
 
   .scroller__inner {
     padding-block: 1rem;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     gap: 1rem;
   }
 
@@ -48,8 +66,8 @@
     animation-play-state: running; /* Ensure the animation runs by default */
   }
 
-  .scroller[data-animated="true"]:hover .scroller__inner {
-    animation-play-state: paused; /* Pause the animation on hover */
+  .scroller[data-animated="true"] .scroller__inner:hover {
+    animation-play-state: paused;
   }
 
   .scroller[data-direction="right"] {
@@ -76,12 +94,8 @@
 
   div {
     display: grid;
-
     place-content: center;
-    font-family: system-ui;
-    font-size: 1.125rem;
-    background-color: var(--clr-primary-800);
-    background-color: var(--color-3);
+    /* background-color: var(--color-3); */
   }
   img {
     object-fit: scale-down;

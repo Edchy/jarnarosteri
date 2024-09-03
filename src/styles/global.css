@@ -54,13 +54,16 @@
   --color-5: #69b8ae;
   --color-6: #f5eb55;
   --color-7: #ff6c89;
+  --color-8: #6ea459;
   --step-0: clamp(1.125rem, 1.0682rem + 0.2424vw, 1.25rem);
   --step-1: clamp(1.35rem, 1.2534rem + 0.4121vw, 1.5625rem);
   --step-2: clamp(1.62rem, 1.4686rem + 0.6461vw, 1.9531rem);
   --step-3: clamp(1.944rem, 0.91rem + 4.4116vw, 4.2188rem);
   --step-4: clamp(2.3328rem, 0.5167rem + 7.7485vw, 6.3281rem);
 }
-
+.flow > * + * {
+  margin-top: var(--size-fluid-3, 1em);
+}
 html {
   font-size: 1rem;
   font-family: Optima, Candara, "Noto Sans", source-sans-pro, sans-serif;
@@ -80,6 +83,7 @@ body {
 p {
   max-inline-size: var(--size-content-3);
   font-size: var(--step-0);
+  text-wrap: pretty;
 }
 ul {
   padding: 0;

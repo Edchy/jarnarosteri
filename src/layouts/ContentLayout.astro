@@ -15,17 +15,15 @@ interface Props {
 const { title, heading, transitionName, bg, color } = Astro.props;
 ---
 
-<Layout title={title}>
-  <div class="clip-bg" style={{ backgroundColor: color }}>
-    <section class="grid" style={{ backgroundColor: bg, color: color }}>
-      <div class="heading-container">
-        <h1 transition:name={`card-title-${transitionName}`}>{heading}</h1>
-      </div>
-      <slot />
-    </section>
-  </div>
+<div class="clip-bg" style={{ backgroundColor: color }}>
   <BackBtn />
-</Layout>
+  <section class="grid" style={{ backgroundColor: bg, color: color }}>
+    <div class="heading-container">
+      <h1 transition:name={`card-title-${transitionName}`}>{heading}</h1>
+    </div>
+    <slot />
+  </section>
+</div>
 
 <style>
   .clip-bg {
@@ -38,6 +36,7 @@ const { title, heading, transitionName, bg, color } = Astro.props;
     margin-inline: auto;
   }
   .grid {
+    /* background-image: url("/images/1.png"); */
     display: grid;
     grid-template-columns: 1fr 3fr;
     height: 100vh;

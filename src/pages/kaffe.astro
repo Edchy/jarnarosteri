@@ -3,6 +3,8 @@ import ContentLayout from "../layouts/ContentLayout.astro";
 import ProductLayout from "../layouts/ProductLayout.astro";
 import BackBtn from "../components/BackBtn.astro";
 import Carousel from "../components/Carousel.astro";
+import Layout from "../layouts/Layout.astro";
+
 import { Image } from "astro:assets";
 import img1 from "../gallery/brygg-mellan.png";
 import img2 from "../gallery/mellan.png";
@@ -11,57 +13,191 @@ import img4 from "../gallery/demeter.png";
 import img5 from "../gallery/img39.avif";
 ---
 
-<main>
-  <ContentLayout
-    heading="kaffe."
-    title="kaffe."
-    color="var(--color-6)"
-    bg="var(--color-3)"
-    transitionName="image-0"
-  >
-    <Carousel />
-    <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque,
-      ullam.
-    </p>
-  </ContentLayout>
-  <ProductLayout
-    img1="/images/brygg.png"
-    img2="/images/brygglabels.avif"
-    img3="/images/brygg-info.avif"
-    img4="/images/Logga-Trans.png"
-    title="Poab's Brygg."
-  >
-    På våran resa genom södra Indien hittade vi den biodynamiska gården Poabs.
-    Gården ligger högt i bergen och drivs som ett slutet kretslopp där allt tas
-    tillvara på. Smaken är fyllig och väl balanserad med härligt söta toner.
-    Omsorgsfullt rostat!
-  </ProductLayout>
-</main>
+<Layout
+  title="Järna Rosteri | kaffe."
+  description="Vårt utbud av ekologiskt, biodynamiskt och omsorgsfullt rostat kaffe."
+  image="/images/Logga-Trans.png"
+>
+  <!-- <Fragment slot="head">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  </Fragment> -->
+  <main>
+    <ContentLayout
+      heading="kaffe."
+      title="kaffe."
+      color="var(--color-6)"
+      bg="var(--color-3)"
+      transitionName="image-0"
+    >
+      <Carousel />
+      <p class="hero-text">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque,
+        ullam.
+      </p>
+    </ContentLayout>
+    <section class="coffee-section">
+      <div class="desc flow">
+        <h2>Rosteriet</h2>
+        <p>
+          På rosteriet ute i Järna rostar vi varje vecka för att alltid leverera
+          nyrostat kaffe. Processen är enkel och allt görs för hand. Vi vill
+          inte krångla till det, allt handlar om en bra råvara som vi utvecklar
+          och förädlar genom omsorgsfull rostning
+        </p>
+        <div
+          data-aos-offset="200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          class="img-container"
+        >
+          <img src="/images/decorations/mugz.avif" alt="#" />
+        </div>
+        <p>
+          Råkaffet vi rostar kommer från <em>ekologiska</em> och <em
+            >biodynamiska
+          </em>gårdar från hela världen. Biodynamiska kaffegårdar drivs som ett
+          slutet kretslopp där man inte odlar mer än vad gården själv orkar
+          bära. Allt växtavfall komposteras och används sedan som näring för nya
+          planteringar. Och så snurrar det på!
+        </p>
+        <p>
+          Vi har själva ingen butik eller direktförsäljning. Men ni som företag
+          kan <a href="./kontakt">beställa</a> från oss till er butik eller direkt
+          till er kaffebryggare
+        </p>
+      </div>
+      <ProductLayout
+        aos="fade-left"
+        img1="/images/coffee/brygg.avif"
+        img2="/images/brygglabels.avif"
+        img3="/images/brygg-info.avif"
+        img4="/images/Logga-Trans.png"
+        title="Brygg."
+        bg="var(--color-6)"
+        color="var(--color-3)"
+        patternNumber="1"
+        poab={true}
+      >
+        På våran resa genom södra Indien hittade vi den biodynamiska gården
+        Poabs. Gården ligger högt i bergen och drivs som ett slutet kretslopp
+        där allt tas tillvara på. Smaken är fyllig och väl balanserad med
+        härligt söta toner. Omsorgsfullt rostat!
+      </ProductLayout>
 
+      <ProductLayout
+        aos="fade-right"
+        img1="/images/coffee/esp.avif"
+        img2="/images/brygglabels.avif"
+        img3="/images/brygg-info.avif"
+        img4="/images/Logga-Trans.png"
+        title="Espresso."
+        bg="var(--color-4-dark)"
+        color="var(--color-4)"
+        patternNumber="2"
+        poab={true}
+        reverse={true}
+      >
+        På våran resa genom södra Indien hittade vi den biodynamiska gården
+        Poabs. Gården ligger högt i bergen och drivs som ett slutet kretslopp
+        där allt tas tillvara på. Smaken är fyllig och väl balanserad med
+        härligt söta toner. Omsorgsfullt rostat!
+      </ProductLayout>
+      <ProductLayout
+        aos="fade-left"
+        img1="/images/coffee/mellan.avif"
+        img2="/images/brygglabels.avif"
+        img3="/images/brygg-info.avif"
+        img4="/images/Logga-Trans.png"
+        title="Brygg Mellan."
+        bg="var(--color-8)"
+        color="var(--color-light)"
+        patternNumber="3"
+      >
+        På våran resa genom södra Indien hittade vi den biodynamiska gården
+        Poabs. Gården ligger högt i bergen och drivs som ett slutet kretslopp
+        där allt tas tillvara på. Smaken är fyllig och väl balanserad med
+        härligt söta toner. Omsorgsfullt rostat!
+      </ProductLayout>
+      <ProductLayout
+        aos="fade-right"
+        img1="/images/coffee/espgrande.avif"
+        img2="/images/brygglabels.avif"
+        img3="/images/brygg-info.avif"
+        img4="/images/Logga-Trans.png"
+        title="Espresso Grande."
+        bg="var(--color-5)"
+        color="var(--color-light)"
+        patternNumber="4"
+        reverse={true}
+      >
+        På våran resa genom södra Indien hittade vi den biodynamiska gården
+        Poabs. Gården ligger högt i bergen och drivs som ett slutet kretslopp
+        där allt tas tillvara på. Smaken är fyllig och väl balanserad med
+        härligt söta toner. Omsorgsfullt rostat!
+      </ProductLayout>
+    </section>
+  </main>
+</Layout>
+<script>
+  import "aos/dist/aos.css";
+  // @ts-ignore
+  import AOS from "aos";
+
+  document.addEventListener("astro:page-load", () => {
+    AOS.init();
+  });
+</script>
 <style>
+  .img-container {
+    /* text-align: center; */
+    & img {
+      margin: 0 auto;
+      width: 300px;
+    }
+  }
+  .desc {
+    padding-block: var(--step-4);
+    padding-inline: 1rem;
+    text-align: center;
+    & p {
+      text-align: start;
+      margin-inline: auto;
+      color: var(--color-dark);
+    }
+    & a {
+      /* color: rgb(227, 115, 3); */
+      text-decoration: underline;
+    }
+  }
+
   main {
     /* background-color: var(--color-6); */
   }
+  section {
+    background-color: var(--color-6);
+    /* padding-block: 5rem; */
+  }
 
-  p {
+  p.hero-text {
     /* text-align: center; */
     grid-column: 2 / -1;
-    place-self: center;
     padding-inline: 2rem;
     font-size: var(--size-fluid-4);
     line-height: 1;
     /* font-size: 3rem; */
     font-family: "JakobHand";
+    /* align-self: start; */
     /* background-color: black; */
     /* color: lime; */
     /* text-wrap: balance;
     word-wrap: break-word;
     hyphens: auto; */
     @media (min-width: 500px) {
-      grid-column: 1 / -1;
+      /* grid-column: 1 / -1; */
     }
     @media (min-width: 1168px) {
+      place-self: center;
       grid-column: 3 / -1;
     }
   }
