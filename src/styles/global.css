@@ -44,7 +44,7 @@
   --color-dark: #333;
   --color-light: #eeede3;
   --color-brand-1: #f3f2be;
-  --color-brand-2: #dd7543;
+  --color-brand-2: #ef8338;
   --color-1: #00ffa3;
   --color-1-dark: oklch(from var(--color-1) calc(1 - 0.4) c h);
   --color-2: #ff8901;
@@ -64,10 +64,12 @@
 .flow > * + * {
   margin-top: var(--size-fluid-3, 1em);
 }
+
 html {
   font-size: 1rem;
   font-family: Optima, Candara, "Noto Sans", source-sans-pro, sans-serif;
   font-weight: normal;
+  /* overflow-x: clip; */
 }
 
 body {

@@ -1,4 +1,6 @@
 ---
+import { fade } from "astro:transitions";
+import { slide } from "astro:transitions";
 const { body, id, href, imageSrc, className, color, bg, hoverBg } = Astro.props;
 
 const styles = {
@@ -9,9 +11,20 @@ const styles = {
 
 <li class={className} style={styles}>
   <div style={{ backgroundColor: hoverBg }}>
-    <img transition:name={`card-image-${id}`} id={id} src={imageSrc} alt="#" />
+    <img
+      transition:animate={fade({ duration: "0.5s" })}
+      transition:name={`card-image-${id}`}
+      id={id}
+      src={imageSrc}
+      alt="#"
+    />
     <a href={href}>
-      <h2 transition:name={`card-title-${id}`}>{body}</h2>
+      <h2
+        transition:animate={fade({ duration: ".5s" })}
+        transition:name={`card-title-${id}`}
+      >
+        {body}
+      </h2>
     </a>
   </div>
 </li>
@@ -34,7 +47,7 @@ const styles = {
     opacity: 0;
   }
 
-  /* li:focus-within :is(img, a),
+  /* li:focus-within :is(img),
   li:hover a {
     opacity: 1;
   } */

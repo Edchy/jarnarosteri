@@ -4,6 +4,8 @@ import ProductLayout from "../layouts/ProductLayout.astro";
 import BackBtn from "../components/BackBtn.astro";
 import Carousel from "../components/Carousel.astro";
 import Layout from "../layouts/Layout.astro";
+import Showcase from "../components/Showcase.astro";
+import VerticalScrollNav from "../components/VerticalScrollNav.astro";
 
 import { Image } from "astro:assets";
 import img1 from "../gallery/brygg-mellan.png";
@@ -22,11 +24,12 @@ import img5 from "../gallery/img39.avif";
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </Fragment> -->
   <main>
+    <VerticalScrollNav />
     <ContentLayout
-      heading="kaffet."
-      title="kaffet."
-      color="var(--color-6)"
-      bg="var(--color-3)"
+      heading="kaffe."
+      title="kaffe."
+      color="var(--color-light)"
+      bg="var(--color-brand-2)"
       transitionName="image-0"
     >
       <Carousel />
@@ -68,24 +71,6 @@ import img5 from "../gallery/img39.avif";
         </p>
       </div>
       <ProductLayout
-        aos="fade-left"
-        img1="/images/coffee/brygg.avif"
-        img2="/images/brygglabels.avif"
-        img3="/images/brygg-info.avif"
-        img4="/images/Logga-Trans.png"
-        title="Brygg."
-        bg="var(--color-6)"
-        color="var(--color-3)"
-        patternNumber="1"
-        poab={true}
-      >
-        På våran resa genom södra Indien hittade vi den biodynamiska gården
-        Poabs. Gården ligger högt i bergen och drivs som ett slutet kretslopp
-        där allt tas tillvara på. Smaken är fyllig och väl balanserad med
-        härligt söta toner. Omsorgsfullt rostat!
-      </ProductLayout>
-
-      <ProductLayout
         aos="fade-right"
         img1="/images/coffee/esp.avif"
         img2="/images/brygglabels.avif"
@@ -95,6 +80,23 @@ import img5 from "../gallery/img39.avif";
         bg="var(--color-4-dark)"
         color="var(--color-4)"
         patternNumber="2"
+        poab={true}
+      >
+        På våran resa genom södra Indien hittade vi den biodynamiska gården
+        Poabs. Gården ligger högt i bergen och drivs som ett slutet kretslopp
+        där allt tas tillvara på. Smaken är fyllig och väl balanserad med
+        härligt söta toner. Omsorgsfullt rostat!
+      </ProductLayout>
+      <ProductLayout
+        aos="fade-left"
+        img1="/images/coffee/brygg.avif"
+        img2="/images/brygglabels.avif"
+        img3="/images/brygg-info.avif"
+        img4="/images/Logga-Trans.png"
+        title="Brygg."
+        bg="var(--color-6)"
+        color="var(--color-3)"
+        patternNumber="1"
         poab={true}
         reverse={true}
       >
@@ -137,6 +139,7 @@ import img5 from "../gallery/img39.avif";
         härligt söta toner. Omsorgsfullt rostat!
       </ProductLayout>
     </section>
+    <Showcase />
   </main>
 </Layout>
 <script>
@@ -153,9 +156,10 @@ import img5 from "../gallery/img39.avif";
     /* text-align: center; */
     & img {
       margin: 0 auto;
-      width: 300px;
+      width: 200px;
     }
   }
+
   .desc {
     padding-block: var(--step-4);
     padding-inline: 1rem;
@@ -175,7 +179,11 @@ import img5 from "../gallery/img39.avif";
     /* background-color: var(--color-6); */
   }
   section {
-    background-color: var(--color-6);
+    background-color: var(--color-light);
+    /* background-image: url("/images/gallery/img47.avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom; */
     /* padding-block: 5rem; */
   }
 
