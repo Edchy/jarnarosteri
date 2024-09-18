@@ -12,6 +12,7 @@ interface Props {
   reverse?: boolean;
   color: string;
   aos?: string;
+  shapeDividerFill?: string;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   poab,
   reverse,
   aos,
+  shapeDividerFill,
 } = Astro.props;
 
 const order2 = reverse ? "order: 2" : "order: 1";
@@ -35,7 +37,19 @@ const rotate = reverse
   : "transform: rotate(-20deg)";
 ---
 
-<article style={{ backgroundColor: bg }}>
+<article class="coffee-blend-article">
+  <div class="custom-shape-divider-top-1726577160">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        class="shape-fill"></path>
+    </svg>
+  </div>
   <div class="product-grid">
     <div style={order2} class={`item-container magicpattern${patternNumber}`}>
       <img
@@ -52,31 +66,28 @@ const rotate = reverse
       {
         poab && (
           <span
-            data-aos-offset="200"
+            data-aos-offset="100"
             data-aos={aos}
             data-aos-duration="1000"
             data-aos-easing="ease-in-out"
-            style={{ color: `oklch(from ${bg} calc(1 - 0.3) c h )` }}
           >
             poab&#180;s
           </span>
         )
       }
       <h3
-        data-aos-duration="1000"
+        data-aos-duration="500"
         data-aos-easing="ease-in-out"
-        data-aos-offset="300"
+        data-aos-offset="200"
         data-aos={aos}
-        style={{ color: color }}
       >
         {title}
       </h3>
       <p
-        data-aos-offset="300"
+        data-aos-offset="200"
         data-aos={aos}
         data-aos-duration="1000"
         data-aos-easing="ease-in-out"
-        style={{ color: `oklch(from ${color} calc(1 - 0.7) c h )` }}
       >
         <slot />
       </p>
@@ -84,22 +95,53 @@ const rotate = reverse
   </div>
 </article>
 
-<style>
-  /* article {
-    -webkit-mask: var(--mask-edge-drip-top);
-    -webkit-mask: var(--mask-edge-zig-zag-bottom);
-  } */
+<style define:vars={{ bg, color, shapeDividerFill }}>
+  .coffee-blend-article:last-child {
+    padding-bottom: 10rem;
+    /* -webkit-mask: var(--mask-edge-drip-bottom);
+    -webkit-mask: var(--mask-edge-zig-zag-bottom); */
+  }
+
+  .custom-shape-divider-top-1726577160 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .custom-shape-divider-top-1726577160 svg {
+    position: relative;
+    display: block;
+    width: calc(128% + 1.3px);
+    height: 25px;
+    transform: rotateY(180deg);
+  }
+
+  .custom-shape-divider-top-1726577160 .shape-fill {
+    fill: var(--shapeDividerFill);
+  }
+  article {
+    background-color: var(--bg);
+    position: relative;
+    overflow-x: clip;
+    /* -webkit-mask: var(--mask-edge-drip-top);
+    -webkit-mask: var(--mask-edge-zig-zag-bottom); */
+  }
 
   .product-grid {
-    padding-block: 5rem;
+    padding-block: 8rem;
     /* margin-block: 10rem; */
     /* outline: 2px solid black; */
-    width: min(100% - 3rem, 1260px);
+    /* width: min(100% - 3rem, 1260px); */
+    width: var(--wrapper);
     margin-inline: auto;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    min-height: 600px;
+    /* min-height: 600px; */
+    /* min-height: 70vh; */
     align-items: center;
   }
   .item-container {
@@ -116,7 +158,7 @@ const rotate = reverse
     /* position: absolute; */
     margin: auto;
     /* maybe percent instead of vw */
-    width: 80vw;
+    width: 70%;
     aspect-ratio: 1;
     object-fit: contain;
   }
@@ -131,28 +173,30 @@ const rotate = reverse
     display: block;
     font-size: 1.5rem;
     font-size: var(--size-fluid-2);
-
-    color: black;
+    color: oklch(from var(--color) calc(1 - 0.4) c h);
     margin-block-end: -0.25rem;
   }
   h3 {
     font-size: 3rem;
-    font-size: var(--size-fluid-4);
+    font-size: var(--step-3);
     font-weight: 900;
     /* text-align: center; */
     margin-bottom: 1rem;
-    color: var(--color-3);
+    color: var(--color);
     text-transform: uppercase;
     /* font-family: Didot, "Bodoni MT", "Noto Serif Display", "URW Palladio L",
       P052, Sylfaen, serif; */
   }
   p {
-    font-family: "JakobHand";
+    /* font-family: "JakobHand"; */
     /* font-family: Bahnschrift, "DIN Alternate", "Franklin Gothic Medium",
       "Nimbus Sans Narrow", sans-serif-condensed, sans-serif; */
     /* color: black; */
-    font-size: 2.5rem;
-    line-height: 1.25;
+    color: oklch(from var(--color) calc(1 - 0.8) c h);
+    /* color: var(--color); */
+    font-size: var(--size-fluid);
+    font-size: var(--step-0);
+    line-height: 1.5;
   }
 
   @media (min-width: 768px) {

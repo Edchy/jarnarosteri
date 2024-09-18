@@ -2,23 +2,30 @@
 import ContentLayout from "../layouts/ContentLayout.astro";
 import Layout from "../layouts/Layout.astro";
 import Carousel from "../components/Carousel.astro";
+import Footer from "../layouts/Footer.astro";
 ---
 
-<Layout>
+<Layout
+  title="Järna Rosteri | Om oss."
+  description="Vårt utbud av ekologiskt, biodynamiskt och omsorgsfullt rostat kaffe."
+  image="/images/Logga-Trans.png"
+>
   <main>
     <ContentLayout
       heading="rosteriet"
-      title="rosteriet."
       color="var(--color-dark)"
       bg="var(--color-light)"
+      clipBg="var(--color-light)"
       transitionName="image-2"
+      dot="var(--color-brand-2)"
     >
       <div
         data-aos-offset="300"
+        data-aos-mirror="true"
+        data-aos-anchorPlacement="bottom"
         data-aos="zoom-in"
         data-aos-duration="1000"
         data-aos-easing="ease-in-out"
-        class="img-container"
         class="img-container"
       >
         <img src="/images/gallery/img22.avif" alt="" />
@@ -27,47 +34,122 @@ import Carousel from "../components/Carousel.astro";
         <img src="/images/gallery/img23.avif" alt="" />
       </div>
     </ContentLayout>
+
     <div class="section-wrapper">
-      <section>
-        <p
-          data-aos-offset="300"
-          data-aos="fade-right"
-          data-aos-duration="1000"
-          data-aos-easing="ease-in-out"
-          class="hero-text"
-        >
-          På rosteriet ute i Järna rostar vi varje vecka för att alltid leverera
-          nyrostat kaffe. Processen är enkel och allt görs för hand. Vi vill
-          inte krångla till det, allt handlar om en bra råvara som vi utvecklar
-          och förädlar genom omsorgsfull rostning
-        </p>
+      <section class="section-1">
+        <div class="flow">
+          <h2
+            data-aos-offset="300"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+          >
+            Alltid nyrostat<span class="brand-color">!</span>
+          </h2>
+          <p
+            data-aos-offset="300"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            class="hero-text"
+          >
+            På rosteriet ute i Järna, rostar vi varje vecka för att alltid
+            leverera nyrostat kaffe. Processen är enkel – allt görs för hand. Vi
+            vill inte krångla till det – allt handlar om en bra råvara, som vi
+            utvecklar och förädlar genom omsorgsfull rostning.
+          </p>
+          <div
+            data-aos-offset="300"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            class="img-container"
+          >
+            <img src="/images/gallery/img18.avif" alt="" />
+          </div>
+        </div>
         <div
-          data-aos-offset="300"
+          data-aos-offset="100"
           data-aos="zoom-in"
           data-aos-duration="1000"
           data-aos-easing="ease-in-out"
           class="img-container"
         >
-          <img src="/images/gallery/img36.avif" alt="" />
+          <img src="/images/gallery/img21.avif" alt="" />
+        </div>
+      </section>
+      <section class="section-2">
+        <div class="flow">
+          <h2
+            data-aos-offset="300"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+          >
+            Alltid naturligt<span class="brand-color">!</span>
+          </h2>
+          <p
+            data-aos-offset="300"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            class="hero-text"
+          >
+            Råkaffet vi rostar kommer från <em>ekologiska</em> och <em
+              >biodynamiska
+            </em>gårdar från hela världen. Biodynamiska kaffegårdar drivs som
+            ett slutet kretslopp där man inte odlar mer än vad gården själv
+            orkar bära. Allt växtavfall komposteras och används sedan som näring
+            för nya planteringar. Och så snurrar det på!
+          </p>
+          <div class="img-container">
+            <!-- <video controls loading="lazy">
+              <source type="video/mp4" src="/images/video/india2.mp4" /></video
+            > -->
+            <video muted controls data-src="/images/video/india2.mp4"></video>
+          </div>
         </div>
         <div class="img-container">
-          <img src="/images/decorations/makers.avif" alt="" />
+          <img src="/images/coffee/grow.avif" alt="" />
         </div>
+        <!-- <div class="img-container">
+          <img src="/images/decorations/makers.avif" alt="" />
+        </div> -->
       </section>
     </div>
   </main>
-  <script>
-    import "aos/dist/aos.css";
-    // @ts-ignore
-    import AOS from "aos";
 
-    document.addEventListener("astro:page-load", () => {
-      AOS.init();
+  <script>
+    // lazy load videos
+    document.addEventListener("DOMContentLoaded", function () {
+      console.log(222);
+      const lazyVideo = document.querySelector("video[data-src]");
+      if (lazyVideo instanceof HTMLVideoElement) {
+        const videoObserver = new IntersectionObserver(function (
+          entries,
+          observer
+        ) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              const video = entry.target as HTMLVideoElement;
+              if (video.dataset.src) {
+                video.src = video.dataset.src;
+                video.load();
+                videoObserver.unobserve(video);
+              }
+            }
+          });
+        });
+        videoObserver.observe(lazyVideo);
+      }
     });
   </script>
 </Layout>
 
 <style>
+  h2 {
+    font-size: var(--size-fluid-4);
+  }
   .span {
     /* grid-column: 1 / -1; */
     display: none;
@@ -78,23 +160,55 @@ import Carousel from "../components/Carousel.astro";
   .img-container {
     max-width: 100%;
     max-height: 100vh;
+    @media (min-width: 700px) {
+      max-height: 90vh;
+    }
   }
-  img {
+  img,
+  video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.22);
+    /* border: 10px solid orange; */
+    /* -webkit-mask: var(--mask-edge-drip-bottom);
+    -webkit-mask: var(--mask-edge-zig-zag-bottom); */
   }
   .section-wrapper {
-    background-color: var(--color-light);
     background-color: #cd2202;
+    background-color: var(--color-dark);
+    background-color: var(--color-brand-2);
+    /* background-image: url("/images/patterns/img44.avif"); */
+
+    /* -webkit-mask: var(--mask-edge-drip-top); */
+    -webkit-mask: var(--mask-edge-zig-zag-bottom);
   }
   section {
-    width: min(100% - 3rem, 960px);
+    /* -webkit-mask: var(--mask-edge-zig-zag-left); */
+    background-color: var(--color-1);
+    /* margin-top: 10rem; */
+    /* padding-inline: 6rem; */
+    width: var(--wrapper);
+    /* height: 100vh; */
     margin-inline: auto;
     display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr 1fr;
-    color: var(--color-dark);
+    gap: var(--size-fluid-4);
+    /* grid-template-columns: 2fr 1fr; */
+    align-content: center;
     color: var(--color-light);
+    color: var(--color-brand-2);
+    color: var(--color-dark);
+  }
+
+  @media (width > 700px) {
+    .section-1 {
+      grid-template-columns: 2fr 1fr;
+    }
+    .section-2 {
+      grid-template-columns: 1fr 2fr;
+    }
+    .section-2 .flow {
+      order: 1;
+    }
   }
 </style>

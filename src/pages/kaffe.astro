@@ -24,8 +24,8 @@ import img5 from "../gallery/img39.avif";
   <main>
     <ContentLayout
       heading="kaffet."
-      title="kaffet."
       color="var(--color-6)"
+      clipBg="var(--color-6)"
       bg="var(--color-3)"
       transitionName="image-0"
     >
@@ -139,15 +139,7 @@ import img5 from "../gallery/img39.avif";
     </section>
   </main>
 </Layout>
-<script>
-  import "aos/dist/aos.css";
-  // @ts-ignore
-  import AOS from "aos";
 
-  document.addEventListener("astro:page-load", () => {
-    AOS.init();
-  });
-</script>
 <style>
   .img-container {
     /* text-align: center; */

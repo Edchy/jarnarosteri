@@ -54,19 +54,18 @@
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("astro:page-load", function () {
     const menuItems = document.querySelectorAll(".menu-item");
     const sideNav = document.querySelector(".side-navigation");
 
+    if (!sideNav || menuItems.length === 0) return; // Prevent script from running if sideNav doesn't exist
+
     const totalHeight =
       document.documentElement.scrollHeight - window.innerHeight;
-    console.log(totalHeight);
-    // Scroll positions for top, middle, and bottom
     const scrollToTop = 0;
     const scrollToMiddle = totalHeight / 2;
     const scrollToBottom = totalHeight;
 
-    // Scroll to appropriate positions when clicking the menu items
     menuItems[0].addEventListener("click", (e) => {
       e.preventDefault();
       window.scrollTo({ top: scrollToTop, behavior: "smooth" });
@@ -82,46 +81,45 @@
       window.scrollTo({ top: scrollToBottom, behavior: "smooth" });
     });
 
-    // Function to update active menu item based on scroll position
     const handleActiveMenu = () => {
       const scrollPosition = window.scrollY;
 
-      // Remove active class from all menu items
       menuItems.forEach((item) => item.classList.remove("menu-item-active"));
 
       if (scrollPosition < scrollToMiddle) {
-        // At the top of the page
         menuItems[0].classList.add("menu-item-active");
       } else if (
         scrollPosition >= scrollToMiddle &&
         scrollPosition < scrollToBottom
       ) {
-        // In the middle of the page
         menuItems[1].classList.add("menu-item-active");
       } else {
-        // At the bottom of the page
         menuItems[2].classList.add("menu-item-active");
       }
     };
 
-    let isScrolling: number; // debouncing
-    window.addEventListener("scroll", () => {
-      const sideNav = document.querySelector(".side-navigation");
+    let isScrolling;
 
+    const onScroll = () => {
       if (sideNav.classList.contains("hidden")) {
         sideNav.classList.remove("hidden");
       }
 
-      // Clear the timeout when the user scrolls
       clearTimeout(isScrolling);
 
-      // Set a timeout to run after scrolling stops
       isScrolling = setTimeout(() => {
         handleActiveMenu();
-      }, 100); // Adjust the debounce delay (in milliseconds) as needed
-    });
+      }, 100);
+    };
+
+    window.addEventListener("scroll", onScroll);
 
     // Initialize the correct active menu item on page load
     handleActiveMenu();
+
+    // Clean up event listeners when navigating away
+    document.addEventListener("astro:before-swap", () => {
+      window.removeEventListener("scroll", onScroll); // Remove the scroll listener
+    });
   });
 </script>

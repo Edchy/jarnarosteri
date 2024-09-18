@@ -1,0 +1,36 @@
+---
+interface Props {
+  color: string;
+}
+
+const { color } = Astro.props;
+---
+
+<aside>
+  <!-- <h4>Järna Rosteri</h4> -->
+  <!-- <img src="/images/logos/Logga-Trans.png" alt="" /> -->
+  <img src="/images/decorations/makers.avif" alt="" />
+</aside>
+
+<style define:vars={{ color }}>
+  aside {
+    /* margin-top: 10rem; */
+    margin-top: 2rem;
+    height: 30vh;
+    display: grid;
+    place-content: center;
+    /* background-image: url("/images/andy-wang.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: luminosity; */
+    background-color: var(--color);
+  }
+  h4 {
+    font-size: var(--size-fluid-6);
+    color: var(--color-light);
+  }
+  img {
+    inline-size: 800px;
+  }
+</style>

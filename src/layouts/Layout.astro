@@ -51,5 +51,14 @@ const {
 
   <body>
     <slot />
+    <script>
+      import "aos/dist/aos.css";
+      // @ts-ignore
+      import AOS from "aos";
+
+      document.addEventListener("astro:page-load", () => {
+        AOS.init();
+      });
+    </script>
   </body>
 </html>

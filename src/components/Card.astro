@@ -1,18 +1,35 @@
 ---
 import { fade } from "astro:transitions";
 import { slide } from "astro:transitions";
-const { body, id, href, imageSrc, className, color, bg, hoverBg } = Astro.props;
 
-const styles = {
-  color: color,
-  backgroundColor: bg,
-};
+interface Props {
+  body: string;
+  id: string;
+  href: string;
+  imageSrc: string;
+  color: string;
+  // bg: string;
+  hoverBg: string;
+  dot: string;
+  class?: string;
+}
+
+const {
+  body,
+  id,
+  href,
+  imageSrc,
+  color,
+  hoverBg,
+  dot,
+  class: className,
+} = Astro.props;
 ---
 
-<li class={className} style={styles}>
-  <div style={{ backgroundColor: hoverBg }}>
+<li data-id={id} class:list={[className, id, "card-link"]}>
+  <div>
     <img
-      transition:animate={fade({ duration: "0.5s" })}
+      transition:animate={fade({ duration: "0s" })}
       transition:name={`card-image-${id}`}
       id={id}
       src={imageSrc}
@@ -20,22 +37,26 @@ const styles = {
     />
     <a href={href}>
       <h2
-        transition:animate={fade({ duration: ".5s" })}
+        transition:animate={fade({ duration: ".3s" })}
         transition:name={`card-title-${id}`}
       >
-        {body}
+        {body}<span class="dot">.</span>
       </h2>
     </a>
   </div>
 </li>
 
-<style>
+<style define:vars={{ color, hoverBg, dot }}>
+  .dot {
+    color: var(--dot);
+  }
   li {
     /* animation-timing-function: var(--ease-elastic-in-out-1);
     animation-duration: 1s; */
+    color: var(--color);
+    /* background-color: var(--bg);    dont need?  */
     overflow: clip;
     overflow: hidden;
-
     /* border: 2px solid pink; */
   }
   /* li:focus-visible :is(div, img, a) {
@@ -46,16 +67,17 @@ const styles = {
   li:hover img {
     opacity: 0;
   }
+  li:focus-within a,
+  li:hover a {
+    opacity: 1;
+  }
 
   /* li:focus-within :is(img),
   li:hover a {
     opacity: 1;
   } */
-  li:focus-within a,
-  li:hover a {
-    opacity: 1;
-  }
   li div {
+    background-color: var(--hoverBg);
     position: relative;
     /* width: 100%; */
     height: 100%;
@@ -71,6 +93,9 @@ const styles = {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    @media (min-width: 500px) {
+      /* object-position: top; */
+    }
     /* filter: contrast(140%) brightness(100%) saturate(130%) sepia(5%)
       hue-rotate(0deg); */
     /* filter: grayscale(100%) contrast(140%); */
