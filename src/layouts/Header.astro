@@ -11,12 +11,14 @@ interface Props {
   transitionName: string;
   clipBg?: string;
   dot?: string;
+  shapeDividerFill?: string;
 }
 
-const { dot, heading, transitionName, bg, clipBg, color } = Astro.props;
+const { dot, heading, transitionName, bg, clipBg, color, shapeDividerFill } =
+  Astro.props;
 ---
 
-<div class="clip-bg">
+<header class="clip-bg">
   <div class="custom-shape-divider-bottom-1726578149">
     <svg
       data-name="Layer 1"
@@ -46,9 +48,9 @@ const { dot, heading, transitionName, bg, clipBg, color } = Astro.props;
     const h1 = document.querySelector("h1");
     h1.setAttribute("data-aos", "zoom-in");
   </script> -->
-</div>
+</header>
 
-<style define:vars={{ dot, clipBg, bg, color }}>
+<style define:vars={{ dot, clipBg, bg, color, shapeDividerFill }}>
   .custom-shape-divider-bottom-1726578149 {
     position: absolute;
     bottom: 0;
@@ -68,7 +70,7 @@ const { dot, heading, transitionName, bg, clipBg, color } = Astro.props;
   }
 
   .custom-shape-divider-bottom-1726578149 .shape-fill {
-    fill: var(--color);
+    fill: var(--shapeDividerFill);
   }
   .dot {
     color: var(--dot);
@@ -85,13 +87,13 @@ const { dot, heading, transitionName, bg, clipBg, color } = Astro.props;
     color: var(--color-3);
     color: var(--color);
     width: min(100%, 1500px);
+    /* width: var(--wrapper); */
     margin-inline: auto;
     display: grid;
     grid-template-columns: 1fr 3fr;
     height: 98vh;
     gap: 1rem;
-    /* -webkit-mask: var(--mask-edge-drip-bottom);
-    -webkit-mask: var(--mask-edge-zig-zag-bottom); */
+    /* -webkit-mask: var(--mask-edge-zig-zag-right); */
 
     @media (min-width: 700px) {
       grid-template-columns: 1fr 2fr 1fr;
@@ -112,6 +114,7 @@ const { dot, heading, transitionName, bg, clipBg, color } = Astro.props;
     white-space: nowrap;
     font-size: min(8rem, 1rem + 15vw);
     z-index: 12;
+
     /* text-decoration: overline; */
   }
 

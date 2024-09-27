@@ -1,6 +1,230 @@
-<div>
-  <span>ica </span>
-  <span>coop</span>
-  <span>saltå kvarn</span>
-  <span>etc</span>
-</div>
+<section class="resellers-section">
+  <h3>Några av våra återförsäljare</h3>
+  <div class="scroller2" data-direction="left" data-speed="fast">
+    <ul class="scroller__inner2">
+      <li>
+        <a href="https://www.coop.se/" target="_blank" rel="noopener noreferrer"
+          ><img src="/images/logos/Coop_logo.svg" alt="coop logo" /></a
+        >
+      </li>
+      <li>
+        <a
+          class="small"
+          href="https://www.ica.se/"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="/images/logos/ica-logo-vector.svg" alt="ica logo" /></a
+        >
+      </li>
+      <li>
+        <a
+          href="https://www.saltakvarn.se/"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="/images/logos/salta-kvarn.png" alt="saltå kvarn logo" /></a
+        >
+      </li>
+      <li>
+        <a
+          href="https://selectedbyjarna.se/?s=j%C3%A4rna+rosteri"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="/images/logos/selected-by-jarna-logo_comp.svg"
+            alt="selected by järna logo"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://barista-espresso.se/search?q=j%C3%A4rna+rosteri&options%5Bprefix%5D=last"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="/images/logos/barista.png" alt="barista logo" /></a
+        >
+      </li>
+      <li>
+        <a
+          href="https://robygge.se/search/?q=kaffe"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="small"
+            src="/images/logos/robygge-transformed.avif"
+            alt="robygge logo"
+          />
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // Select the scroller element
+    const scroller = document.querySelector<HTMLElement>(".scroller2");
+
+    // Check if the user prefers reduced motion
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      addAnimation();
+    }
+
+    function addAnimation(): void {
+      // Ensure scroller exists
+      if (!scroller) {
+        console.error("Scroller element with class '.scroller2' not found.");
+        return;
+      }
+
+      // Set the 'data-animated' attribute as a string
+      scroller.setAttribute("data-animated", "true");
+
+      // Select the inner scroller element
+      const scrollerInner =
+        scroller.querySelector<HTMLElement>(".scroller__inner2");
+
+      // Ensure scrollerInner exists
+      if (!scrollerInner) {
+        console.error(
+          "Inner scroller element with class '.scroller__inner2' not found."
+        );
+        return;
+      }
+
+      // Convert HTMLCollection to an array of HTMLElements
+      const scrollerContent = Array.from(
+        scrollerInner.children
+      ) as HTMLElement[];
+
+      // Duplicate each child element
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true) as HTMLElement;
+        duplicatedItem.setAttribute("aria-hidden", "true");
+        scrollerInner.appendChild(duplicatedItem);
+      });
+    }
+  });
+</script>
+<style>
+  .resellers-section {
+    /* padding-block-start: var(--section-divider); */
+    padding-block-end: var(--section-bottom);
+  }
+  h3 {
+    text-align: center;
+    font-size: 0.575rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-brand-2);
+    margin-block-end: 1rem;
+  }
+  .scroller2 {
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  .scroller__inner2 {
+    display: flex;
+    justify-content: center;
+    /* padding-block: 1rem; */
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+
+  li {
+    height: 60px;
+    width: 100px;
+    /* padding: 1rem; */
+
+    transition: all 300ms;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  a {
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 300ms;
+  }
+  .small {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .scroller2[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+  }
+
+  .scroller2[data-animated="true"] .scroller__inner2 {
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s)
+      var(--_animation-direction, forwards) linear infinite;
+    animation-delay: 1s;
+  }
+
+  .scroller2[data-direction="left"] {
+    --_animation-direction: forwards;
+  }
+  .scroller2[data-direction="right"] {
+    --_animation-direction: reverse;
+  }
+
+  .scroller2[data-direction="slow"] {
+    --_animation-duration: 20s;
+  }
+  .scroller2[data-speed="fast"] {
+    --_animation-duration: 15s;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  .scroller2[data-animated="true"]
+    .scroller__inner:has(img:hover, img:active, img:focus) {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+
+  li:hover img,
+  li:focus img,
+  li:active img {
+    transform: scale(1.3);
+    filter: saturate(1.5);
+  }
+
+  .scroller2[data-animated="true"]
+    .scroller__inner2:has(li:hover, li:active, li:focus) {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+
+  li:hover,
+  li:focus,
+  li:active {
+    transform: scale(1.1);
+    filter: saturate(3);
+  }
+</style>

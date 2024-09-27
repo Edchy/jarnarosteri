@@ -30,11 +30,14 @@ const {
   shapeDividerFill,
 } = Astro.props;
 
-const order2 = reverse ? "order: 2" : "order: 1";
-const order1 = reverse ? "order: 1" : "order: 2";
+const order2 = reverse ? "2" : "1";
+const order1 = reverse ? "1" : "2";
 const rotate = reverse
   ? "transform: rotate(20deg)"
   : "transform: rotate(-20deg)";
+const direction = reverse
+  ? "var(--mask-edge-zig-zag-bottom)"
+  : "var(--mask-edge-zig-zag-bottom)";
 ---
 
 <article class="coffee-blend-article">
@@ -50,8 +53,8 @@ const rotate = reverse
         class="shape-fill"></path>
     </svg>
   </div>
-  <div class="product-grid">
-    <div style={order2} class={`item-container magicpattern${patternNumber}`}>
+  <div class="product-grid wrapper">
+    <div class={`item-container magicpattern${patternNumber}`}>
       <img
         data-aos-offset="200"
         data-aos={aos}
@@ -62,11 +65,11 @@ const rotate = reverse
         alt="bag of coffee beans"
       />
     </div>
-    <div style={order1} class="description">
+    <div class="description">
       {
         poab && (
           <span
-            data-aos-offset="100"
+            data-aos-offset="400"
             data-aos={aos}
             data-aos-duration="1000"
             data-aos-easing="ease-in-out"
@@ -95,11 +98,20 @@ const rotate = reverse
   </div>
 </article>
 
-<style define:vars={{ bg, color, shapeDividerFill }}>
-  .coffee-blend-article:last-child {
-    padding-bottom: 10rem;
-    /* -webkit-mask: var(--mask-edge-drip-bottom);
-    -webkit-mask: var(--mask-edge-zig-zag-bottom); */
+<style define:vars={{ bg, color, shapeDividerFill, order1, order2, direction }}>
+  /* .coffee-blend-article:last-child {
+    padding-bottom: 3rem;
+  } */
+  .coffee-blend-article {
+    padding-bottom: 3rem;
+
+    &:last-child {
+      padding-bottom: 4rem;
+      /* -webkit-mask: var(--direction); */
+    }
+    @media (width > 1268px) {
+      /* -webkit-mask: var(--direction); */
+    }
   }
 
   .custom-shape-divider-top-1726577160 {
@@ -131,27 +143,22 @@ const rotate = reverse
   }
 
   .product-grid {
-    padding-block: 8rem;
-    /* margin-block: 10rem; */
-    /* outline: 2px solid black; */
-    /* width: min(100% - 3rem, 1260px); */
-    width: var(--wrapper);
-    margin-inline: auto;
+    padding-block: var(--size-fluid-6);
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    /* min-height: 600px; */
-    /* min-height: 70vh; */
     align-items: center;
   }
   .item-container {
     position: relative;
-    order: 2;
+    /* order: 2; */
     width: 100%;
     /* height: 100%; */
     border-radius: var(--radius-drawn-1);
-
     overflow-x: clip;
+    @media (width < 768px) {
+      z-index: 2;
+    }
   }
 
   img {
@@ -165,9 +172,6 @@ const rotate = reverse
 
   .description {
     padding-inline: 1rem;
-    padding-block: 1rem;
-    /* color: var(--color-5); */
-    order: 1;
   }
   span {
     display: block;
@@ -175,6 +179,7 @@ const rotate = reverse
     font-size: var(--size-fluid-2);
     color: oklch(from var(--color) calc(1 - 0.4) c h);
     margin-block-end: -0.25rem;
+    font-family: "Betelgeuse";
   }
   h3 {
     font-size: 3rem;
@@ -184,11 +189,20 @@ const rotate = reverse
     margin-bottom: 1rem;
     color: var(--color);
     text-transform: uppercase;
-    /* font-family: Didot, "Bodoni MT", "Noto Serif Display", "URW Palladio L",
-      P052, Sylfaen, serif; */
+    position: relative;
+    /* z-index: 2; */
+
+    /* test */
+    font-family: "Zimmerman";
+    font-family: "Betelgeuse";
+    font-size: var(--step-4);
+    letter-spacing: 5px;
+    /* backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(10px);  */
+    border-radius: 20px;
   }
   p {
-    /* font-family: "JakobHand"; */
+    /* font-family: "Nacho"; */
     /* font-family: Bahnschrift, "DIN Alternate", "Franklin Gothic Medium",
       "Nimbus Sans Narrow", sans-serif-condensed, sans-serif; */
     /* color: black; */
@@ -205,6 +219,10 @@ const rotate = reverse
     }
     .item-container {
       height: 100%;
+      order: var(--order2);
+    }
+    .description {
+      order: var(--order1);
     }
     img {
       position: absolute;
