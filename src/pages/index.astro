@@ -14,6 +14,7 @@ import { slide } from "astro:transitions";
   image="/images/Logga-Trans.png"
 >
   <main>
+    <img class="full-w-image" src="/images/gallery/img5.avif" alt="" />
     <h1 class="visually-hidden">Järna Rosteri</h1>
     <nav>
       <menu class="card-links">
@@ -70,16 +71,16 @@ import { slide } from "astro:transitions";
           body="hej"
           id="image-5"
           hoverBg="var(--color-7)"
-          href="./kontakt"
+          href="./kontakt2"
           imageSrc="/images/gallery/img6.avif"
           dot="var(--color-4)"
         />
       </menu>
     </nav>
   </main>
-  <script src="../js/test.ts"></script>
-
+  <script src="../js/cardOpacity.ts"></script>
   <script src="../js/index.ts"></script>
+  <script src="../js/initialFullscreenImg.js"></script>
 </Layout>
 <style is:global>
   .active {
@@ -94,9 +95,14 @@ import { slide } from "astro:transitions";
   .active a {
     opacity: 1;
   }
-  /* .bla {
-    border: 2px solid black;
-  } */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 
   .visually-hidden {
     clip: rect(0, 0, 0, 0);
@@ -109,6 +115,19 @@ import { slide } from "astro:transitions";
     /* padding: 0;
     margin: -1px;
     border: 0; */
+  }
+  .full-w-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 9999;
+    transition: opacity 1s ease-out;
+  }
+  .fade-out {
+    opacity: 0;
   }
 
   .card-links {
@@ -171,7 +190,7 @@ import { slide } from "astro:transitions";
       transform: rotate(45deg);
     } */
     & h2 {
-      transform: rotate(-90deg);
+      transform: rotate(0deg);
     }
   }
   .image-3 {

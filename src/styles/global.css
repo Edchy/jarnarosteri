@@ -50,8 +50,8 @@ img {
 
 :root {
   --wrapper: min(100% - 3rem, 960px);
-  --section-divider: 4rem;
-  --section-bottom: 7rem;
+  --section-divider: 7rem;
+  --section-bottom: 9rem;
   /* clrs */
   --coffee: #c0ffee;
   --color-dark: #333;

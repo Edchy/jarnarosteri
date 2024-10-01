@@ -3,7 +3,8 @@
   aria-label="A tree growing until it bears fruit, dropping its fruit, shrinking, and repeating the cycle"
 ></canvas>
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("astro:page-load", () => {
+    console.log(222);
     const t = new Tree("canvas");
   });
 

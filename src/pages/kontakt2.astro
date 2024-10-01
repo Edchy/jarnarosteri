@@ -33,30 +33,38 @@ import img5 from "../gallery/img39.avif";
       shapeDividerFill="var(--color-6)"
     >
       <div class="contact-info-container">
-        <h3 class="text" tabindex="1">
-          frågor<span
-            ><a href="mailto:info@jarnarosteri.se">info@jarnarosteri.se</a
-            ></span
+        <div>
+          <h3>frågor:</h3>
+          <a href="mailto:info@jarnarosteri.se">info@jarnarosteri.se</a>
+        </div>
+        <div>
+          <h3>order:</h3>
+          <a href="mailto:order@jarnarosteri.se">order@jarnarosteri.se</a>
+        </div>
+        <div>
+          <h3>ekonomi:</h3>
+          <a href="mailto:ekonomi@jarnarosteri.se">ekonomi@jarnarosteri.se</a>
+        </div>
+        <div>
+          <h3>telefon:</h3>
+          <a href="tel:+46708401365">070-840 13 65</a>
+        </div>
+        <div>
+          <h3>adress:</h3>
+          <a href="https://goo.gl/maps/M4BHwkiez8hS7ttD9"
+            >Maskinvägen 5, 15330 Järna</a
           >
-        </h3>
-        <h3 class="text">order<span><a href="#">AND CLIPPING</a></span></h3>
-        <h3 class="text">ekonomi<span>CRAZYYY</span></h3>
-        <h3 class="text">
-          slå en pling<span
-            ><a
-              href="https://stacksorted.com/text-effects/minh-pham"
-              target="_blank">SOURCE</a
-            ></span
-          >
-        </h3>
-        <h3 class="text">
-          hitta hit<span
-            ><a href="https://twitter.com/juxtopposed" target="_blank"
-              >LET'S CONNECT</a
-            ></span
-          >
-        </h3>
+        </div>
       </div>
+      <!-- <div class="socials-container">
+        <a target="_blank" href="https://www.instagram.com/jarnarosteri/">
+          <img
+            src="/images/qr.avif"
+            alt=""
+            transition:name="card-image-image-5"
+          />
+        </a>
+      </div> -->
       <div class="socials-container">
         <a href="https://www.instagram.com/jarnarosteri/">
           <svg
@@ -83,103 +91,29 @@ import img5 from "../gallery/img39.avif";
   </main>
 </Layout>
 <style>
-  .text {
-    font-size: var(--step-1);
-    letter-spacing: -0.01em;
-    line-height: 100%;
-    /* margin: 0; */
-    /* width: 100%; */
-    color: rgb(182, 182, 182, 0.2);
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-size: 0%;
-    transition: background-size cubic-bezier(0.1, 0.5, 0.5, 1) 0.5s;
-    /* border-bottom: 1px solid #2f2b284a; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    @media (min-width: 700px) {
-      align-items: center;
-    }
-    justify-content: center;
-    position: relative;
-    font-family: var(--font-primary-heading);
-    /* font-size: 1rem; */
-    letter-spacing: 1px;
-    color: var(--dot);
-    /* background: linear-gradient(to right, #b6b6b6, #b6b6b6) no-repeat; */
-  }
-
-  span {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-4);
-    /* color: #0d0d0d; */
-    /* padding: 1rem; */
-    /* border-radius: 10px; */
-
-    clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
-    transform-origin: center;
-    transition: all cubic-bezier(0.1, 0.5, 0.5, 1) 0.4s;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .text:hover > span {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-  /* -- */
-  a {
-    /* border-radius: 100px; */
-
-    /* text-decoration: none; */
-    color: var(--color-6);
-    /* font-size: var(--step-2); */
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }
-
-  h3 {
-    /* text-transform: uppercase; */
-    font-family: var(--font-primary-heading);
-    /* font-size: 1rem; */
-    letter-spacing: 1px;
-    color: var(--dot);
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    /* width: 100%; */
-    text-align: center;
-    /* margin: auto; */
-  }
-
   main {
     background-color: var(--color-6);
     height: 100vh;
   }
   .contact-info-container {
-    /* padding: 1rem; */
     display: grid;
-    /* justify-content: center; */
-    /* gap: 5rem; */
-    /* place-content: center; */
-    /* gap: 2rem; */
-    /* align-content: center; */
     grid-template-columns: 1fr;
-    /* grid-row: span 2; */
-    /* grid-template-rows: 1fr 1fr 1fr 100px 100px; */
-    /* align-items: center; */
-    /* padding-block: var(--size-fluid-7); */
+    align-items: center;
+    padding-block: var(--size-fluid-7);
 
+    & div {
+      font-size: var(--step-0);
+      /* display: flex; */
+      /* align-items: center; */
+      /* font-size: 1rem; */
+
+      & h3 {
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        color: var(--dot);
+      }
+    }
     @media (min-width: 1450px) {
       grid-template-columns: 1fr 1fr;
     }
@@ -201,9 +135,12 @@ import img5 from "../gallery/img39.avif";
     }
   }
 
+  a:hover {
+    /* color: white; */
+  }
+
   .socials-container a svg {
     transition: transform 0.2s;
-    margin: auto;
     &:hover {
       transform: scale(1.25);
     }

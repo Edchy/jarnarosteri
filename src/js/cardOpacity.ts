@@ -26,11 +26,11 @@
     setTimeout(()=> {
       navLinks.forEach(link => link.classList.remove('active'));
 
-    }, 2000)
+    }, 1500)
   }
 
   // Run immediately on page load
-  // updateCardOpacity();
+  updateCardOpacity();
 
   // Run on subsequent navigations to this page
   document.addEventListener("astro:page-load", () => {
